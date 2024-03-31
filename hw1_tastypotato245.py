@@ -118,6 +118,7 @@ def NewTreasureBox():
 
         # 직선거리가 미리 정한 값 이하인 경우 bool 형식 True를 return
         if distance <= dab_radius:
+            isAlreadyWon = True
             return True
 
         # 아직도 return하지 않은 경우 계산해 둔 직선거리 값(아마도 float 형식)을 return
