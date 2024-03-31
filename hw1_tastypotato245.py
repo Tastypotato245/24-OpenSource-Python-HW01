@@ -79,27 +79,18 @@ def NewNumberBaseball():
 
         return strikes * 10 + balls
 
-    # 세팅이 끝난 숫자 야구 게임용 함수를 return
     return pitch
 
-# 새 보물 찾기 게임용 함수를 준비해 return하는 함수예요
 def NewTreasureBox():
-    # 보물 찾기 게임용 Data 준비
+    dab_x = random.uniform(0.0, 16.0)
+    dab_y = random.uniform(0.0, 16.0) 
 
-    # 답 좌표 고르기
-    dab_x = random.uniform(0.0, 16.0) # [0.0, 16.0] 범위의 균등분포를 만족하는 임의의 float 값을 얻을 수 있어요
-    dab_y = random.uniform(0.0, 16.0) # 이거 말고도 정규분포 등등 다른 버전도 많아요
-
-    # 이번에 고른 좌표와 답 좌표 사이의 직선거리가 1.0 이하면 보물 찾기 성공
     dab_radius = 1.0
 
-    # 기회는 열 번
     life = 10
 
-    # 이미 이겼을 때만 True, 이미 졌거나 아직 게임이 끝나지 않은 경우 False
     isAlreadyWon = False
 
-    # 보물 찾기 게임용 함수에 대한 함수 정의
     def pick(x, y):
         nonlocal life
         nonlocal isAlreadyWon
@@ -124,42 +115,34 @@ def NewTreasureBox():
         # 아직도 return하지 않은 경우 계산해 둔 직선거리 값(아마도 float 형식)을 return
         return distance
 
-    # 세팅이 끝난 보물 찾기 게임용 함수를 return
     return pick
 
-
-
-
-
-
-
-# ---------------------------------------------------------------------
-# 여기서부터 여러분이 코드 적을 만한 부분이 나와요
-
-
-
-
-# 목표 2: (프로그래머가 아닌) 사용자가, 우리가 준비해 둔 prompt 등을 확인하면서 생각을 진행하여
-# 게임 한 판을 키보드로 직접 플레이할 수 있도록,
-# 함수 Game()에 대한 함수 정의 구성하기
 def Game():
-    # 아래에 있는 return문은 임시로 적어 두었어요. 코드 적기 시작할 때 지우면 돼요
+    
+    gameChoice = input('Play the (0: NumberBaseball, 1: TreasureBox) Game: ')
+
+    while not(gameChoice == 0 or gameChoice == 1):
+        gameChoice = input('Wrong Number, Enter Again: ')
+    
+    if gameChoice == 0:
+        g = NewNumberBaseball()
+        h = input('1st Number: ')
+        t = input('2nd Number: ')
+        o = input('3rd Number: ')
+        print(g(h, t, o))
+
+    else:
+        g = NewTreasureBox()
+        x = input('x Position: ')
+        y = input('y Position: ')
+        print(g(x, y))
+
     return
-
-
-
-
-
-
 
 
 # ☆ 목표 3(안 해도 돼요): 스스로 계산을 진행하며 게임 한 판을 자동으로 플레이할 수 있도록 두 함수에 대한 함수 정의 구성하기
 
 def ChooseTheGameToSolve():
-    # 숫자 야구 게임을 자동으로 플레이하도록 만든다면 0을,
-    # 보물 상자 게임을 자동으로 플레이하도록 만든다면 1을 return하도록 구성하면 돼요.
-    #
-    # 아래에 있는 return문에 적힌 수식을, 자신이 원하는 게임에 맞게 고쳐 적으면 끝나요
     return 1
     
 
@@ -171,9 +154,6 @@ def Solve(g):
 
     while type(ret) != bool:
         ret = g(0, 0)
-
-
-
 
 
 
@@ -217,3 +197,6 @@ def Solve100000Pan():
     print('    Win rate: ' + str(count_won / count_played * 100) + '%')
     print('  Error rate: ' + str(count_error / count_played * 100) + '%')
     print('Elapsed time: ' + str(end_time - start_time) + ' ns')
+
+# -----------------------
+
