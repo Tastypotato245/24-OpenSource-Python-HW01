@@ -119,22 +119,22 @@ def NewTreasureBox():
 
 def Game():
     
-    gameChoice = input('Play the (0: NumberBaseball, 1: TreasureBox) Game: ')
+    gameChoice = int(input('Play the (0: NumberBaseball, 1: TreasureBox) Game: '))
 
     while not(gameChoice == 0 or gameChoice == 1):
-        gameChoice = input('Wrong Number, Enter Again: ')
+        gameChoice = int(input('Wrong Number, Enter Again: '))
     
     if gameChoice == 0:
         g = NewNumberBaseball()
-        h = input('1st Number: ')
-        t = input('2nd Number: ')
-        o = input('3rd Number: ')
+        h = int(input('1st Number: '))
+        t = int(input('2nd Number: '))
+        o = int(input('3rd Number: '))
         print(g(h, t, o))
 
     else:
         g = NewTreasureBox()
-        x = input('x Position: ')
-        y = input('y Position: ')
+        x = int(input('x Position: '))
+        y = int(input('y Position: '))
         print(g(x, y))
 
     return
